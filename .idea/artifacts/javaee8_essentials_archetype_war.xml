@@ -1,8 +1,0 @@
-<component name="ArtifactManager">
-  <artifact type="war" name="javaee8-essentials-archetype:war">
-    <output-path>$PROJECT_DIR$/target</output-path>
-    <root id="archive" name="javaee8-essentials-archetype.war">
-      <element id="artifact" artifact-name="javaee8-essentials-archetype:war exploded" />
-    </root>
-  </artifact>
-</component>

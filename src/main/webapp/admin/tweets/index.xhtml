@@ -1,0 +1,45 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                template="/templates/basic.xhtml">
+    <ui:define name="head">
+        <title>Tweets</title>
+    </ui:define>
+
+    <ui:define name="content">
+
+        <h:panelGroup>
+            <h:form class="page-content">
+                <h:outputLabel value="Filter: "/>
+                <h:inputText value="#{tweetBean.filter}" id="filter">
+                    <f:ajax event="keyup" execute="filter" render="tweets"/>
+                </h:inputText>
+            </h:form>
+        </h:panelGroup>
+
+        <h:panelGroup id="tweets">
+            <h:form class="well">
+                <h:dataTable class="table" value="#{tweetBean.tweets}" var="tweet">
+                    <h:column>
+                        <f:facet name="header">Date</f:facet>
+                        <h:outputLabel value="#{tweet.datePlaced}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">User</f:facet>
+                        <h:outputLabel value="#{tweet.user.username}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">Message</f:facet>
+                        <h:outputLabel value="#{tweet.message}"/>
+                    </h:column>
+                    <h:column>
+                        <h:commandLink class="btn btn-danger" value="Remove" action="#{tweetBean.removeUser(tweet)}">
+                            <f:ajax event="action" render="tweets"/>
+                        </h:commandLink>
+                    </h:column>
+                </h:dataTable>
+            </h:form>
+        </h:panelGroup>
+    </ui:define>
+
+</ui:composition>

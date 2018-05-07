@@ -1,0 +1,81 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core" xmlns:ui="http://java.sun.com/jsf/facelets"
+>
+<h:head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"/>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"/>
+    <title>USER DETAIL</title>
+</h:head>
+
+<h:body class="container">
+    <table>
+        <tr>
+            <th>Roles:</th>
+            <th>
+                <h:form>
+                    <ui:insert name="roles"></ui:insert>
+                </h:form>
+            </th>
+            <th>
+                <h:form>
+                    <ui:insert name="rolesEdit"></ui:insert>
+                </h:form>
+            </th>
+        </tr>
+    </table>
+
+    <h:form id="userdata">
+        <table>
+            <tr>
+                <th>Username:</th>
+                <th><ui:insert name="username"></ui:insert></th>
+                <th><ui:insert name="usernameEdit"></ui:insert></th>
+            </tr>
+            <tr>
+                <th>Password:</th>
+                <th><ui:insert name="password"></ui:insert></th>
+                <th><ui:insert name="passwordEdit"></ui:insert></th>
+            </tr>
+            <tr>
+                <th>Name:</th>
+                <th><ui:insert name="name"></ui:insert></th>
+                <th><ui:insert name="nameEdit"></ui:insert></th>
+            </tr>
+            <tr>
+                <th>Location:</th>
+                <th><ui:insert name="location"></ui:insert></th>
+                <th><ui:insert name="locationEdit"></ui:insert></th>
+            </tr>
+            <tr>
+                <th>Web:</th>
+                <th><ui:insert name="web"></ui:insert></th>
+                <th><ui:insert name="webEdit"></ui:insert></th>
+            </tr>
+            <tr>
+                <th>Bio:</th>
+                <th><ui:insert name="bio"></ui:insert></th>
+                <th><ui:insert name="bioEdit"></ui:insert></th>
+            </tr>
+            <tr>
+                <th>
+                    <ui:insert name="save"></ui:insert>
+                </th>
+            </tr>
+        </table>
+    </h:form>
+
+
+    <h:form>
+        <ui:insert name="back"></ui:insert>
+    </h:form>
+
+
+</h:body>
+</html>

@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="Kwetter:war">
+    <output-path>$PROJECT_DIR$/target</output-path>
+    <root id="archive" name="kwetter-1.0-SNAPSHOT.war">
+      <element id="artifact" artifact-name="Kwetter:war exploded" />
+    </root>
+  </artifact>
+</component>

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:c="http://java.sun.com/jsp/jstl/core">
+<body>
+<ui:composition>
+
+    <h:panelGroup id="menu">
+        <h:form class="page-header">
+            <c:if test="#{loginBean.loggedIn}">
+                <h:outputLabel>Hello #{loginBean.principalName}! </h:outputLabel>
+            </c:if>
+
+            <h:outputLink class="btn btn-primary"
+                          value="#{facesContext.externalContext.requestContextPath}/index.xhtml">Home</h:outputLink>
+            <c:choose>
+                <c:when test="#{loginBean.loggedIn}">
+                    <h:outputLink class="btn btn-primary"
+                                  value="#{facesContext.externalContext.requestContextPath}/admin/index.xhtml">Admin panel</h:outputLink>
+                    <h:outputLink class="btn btn-primary"
+                                  value="#{facesContext.externalContext.requestContextPath}/auth/logout.xhtml">Logout</h:outputLink>
+                </c:when>
+                <c:otherwise>
+                    <h:outputLink class="btn btn-primary"
+                                  value="#{facesContext.externalContext.requestContextPath}/auth/login.xhtml">Login</h:outputLink>
+
+                </c:otherwise>
+            </c:choose>
+        </h:form>
+    </h:panelGroup>
+
+</ui:composition>
+</body>
+</html>

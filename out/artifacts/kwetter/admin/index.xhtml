@@ -1,0 +1,52 @@
+<!--<?xml version='1.0' encoding='UTF-8' ?>-->
+<!--<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"-->
+<!--"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">-->
+<!--<html xmlns="http://www.w3.org/1999/xhtml"-->
+<!--xmlns:h="http://java.sun.com/jsf/html"-->
+<!--xmlns:f="http://java.sun.com/jsf/core" xmlns:ui="http://java.sun.com/jsf/facelets">-->
+<!--<h:head>-->
+<!--<ui:composition>-->
+<!--<ui:define name="head">-->
+<!--<title>ADMIN</title>-->
+<!--</ui:define>-->
+<!--</ui:composition>-->
+<!--</h:head>-->
+
+<!--<h:body class="container">-->
+<!--<ui:composition-->
+<!--<h:panelGroup>-->
+
+
+<!--<h:form class="page-header">-->
+<!--<h:commandButton class="btn btn-primary" value="Users" action="#{adminBean.goToUsers()}"/>-->
+
+<!--<br/>-->
+<!--<br/>-->
+<!--<h:commandButton class="btn btn-primary" value="Tweets" action="#{adminBean.goToTweets()}"/>-->
+<!--</h:form>-->
+
+<!--</h:panelGroup>-->
+<!--</h:body>-->
+<!--</html>-->
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:h="http://xmlns.jcp.org/jsf/html"
+                template="/templates/basic.xhtml">
+    <ui:define name="head">
+        <title> Admin Panel </title>
+    </ui:define>
+
+    <ui:define name="content">
+        <h:panelGroup>
+            <h:form class="page-content">
+                <h:outputLink class="btn btn-primary" value="#{adminBean.goToUsers()}">Users</h:outputLink>
+
+                <br/>
+                <br/>
+                <h:outputLink class="btn btn-primary" value="#{adminBean.goToTweets()}">Tweets</h:outputLink>
+            </h:form>
+
+        </h:panelGroup>
+    </ui:define>
+
+</ui:composition>

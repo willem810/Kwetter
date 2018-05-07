@@ -1,0 +1,95 @@
+<!--<?xml version='1.0' encoding='UTF-8' ?>-->
+<!--<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"-->
+<!--"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">-->
+<!--<html xmlns="http://www.w3.org/1999/xhtml"-->
+<!--xmlns:h="http://java.sun.com/jsf/html"-->
+<!--xmlns:f="http://java.sun.com/jsf/core" xmlns:ui="http://java.sun.com/jsf/facelets">-->
+<!--<h:head>-->
+<!--<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>-->
+<!--<meta name="viewport" content="width=device-width, initial-scale=1"/>-->
+<!--<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"/>-->
+<!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"/>-->
+<!--<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"/>-->
+<!--</h:head>-->
+<!--<h:body class="container">-->
+<!---->
+<!--</h:body>-->
+<!--</html>-->
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                template="/templates/basic.xhtml">
+    <ui:define name="head">
+        <title>Users</title>
+    </ui:define>
+
+    <ui:define name="content">
+
+        <h:panelGroup id="addUser">
+            <h:form class="well">
+                <h:outputLink class="btn btn-primary" value="#{userBean.goToAddUser()}">
+                    Add User
+                </h:outputLink>
+
+            </h:form>
+        </h:panelGroup>
+
+
+        <h:panelGroup>
+            <h:form class="page-content">
+                <h:outputLabel value="Filter: "/>
+                <h:inputText value="#{userBean.filter}" id="filter">
+                    <f:ajax event="keyup" execute="filter" render="users"/>
+                </h:inputText>
+            </h:form>
+        </h:panelGroup>
+
+
+        <h:panelGroup id="users">
+            <h:form class="well">
+                <h:dataTable class="table" value="#{userBean.users}" var="user">
+                    <h:column>
+                        <f:facet name="header">Username</f:facet>
+                        <h:outputLabel value="#{user.username}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">Name</f:facet>
+                        <h:outputLabel value="#{user.name}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">Location</f:facet>
+                        <h:outputLabel value="#{user.location}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">Groups</f:facet>
+                        <ui:repeat value="#{user.groups}" var="group">
+                            <li>
+                                #{group.name}
+                            </li>
+                        </ui:repeat>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">Web</f:facet>
+                        <h:outputLabel value="#{user.web}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">Bio</f:facet>
+                        <h:outputLabel value="#{user.bio}"/>
+                    </h:column>
+                    <h:column>
+                        <h:commandLink class="btn btn-danger" value="Remove" action="#{userBean.removeUser(user)}">
+                            <f:ajax event="action" render="users"/>
+                        </h:commandLink>
+                    </h:column>
+                    <h:column>
+                        <h:outputLink class="btn btn-primary" value="#{userBean.goToUserDetail()}">Details
+                            <f:param name="username" value="#{user.username}"/>
+                        </h:outputLink>
+                    </h:column>
+                </h:dataTable>
+            </h:form>
+        </h:panelGroup>
+    </ui:define>
+
+</ui:composition>

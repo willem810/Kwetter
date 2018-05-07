@@ -1,0 +1,59 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core" xmlns:ui="http://java.sun.com/jsf/facelets"
+>
+<h:head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"/>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"/>
+    <title>USER DETAIL</title>
+</h:head>
+<f:metadata>
+    <f:viewParam name="username" value="#{userDetailBean.username}" required="false"/>
+    <!--<f:viewAction action="#{userDetailBean.loadUser()}"></f:viewAction>-->
+    <f:event type="preRenderComponent" listener="#{userDetailBean.loadUser()}"/>
+</f:metadata>
+
+<h:body class="container">
+
+    <ui:composition template="userDetailTemplate.xhtml">
+        <ui:define name="username">#{userDetailBean.user.username}</ui:define>
+        <ui:define name="name">#{userDetailBean.user.name}</ui:define>
+        <ui:define name="location">#{userDetailBean.user.location}</ui:define>
+        <ui:define name="web">#{userDetailBean.user.web}</ui:define>
+        <ui:define name="bio">#{userDetailBean.user.bio}</ui:define>
+        <ui:define name="roles">
+            <ui:repeat value="#{userDetailBean.user.groups}" var="group">
+                <li>
+                    <h:outputLabel value="#{group.name}"/>
+                    <h:commandButton value="X" type="submit" class="btn btn-danger"
+                                     action="#{userDetailBean.removeGroup(group)}"/>
+                </li>
+            </ui:repeat>
+        </ui:define>
+
+        <ui:define name="rolesEdit">
+            <h:form>
+                <h:selectOneMenu value="#{userDetailBean.selectedGroup}">
+                    <f:selectItems value="#{userDetailBean.remainingGroups}" var="group" itemValue="#{group.name}"
+                                   itemLabel="#{group.name}"/>
+                    <f:ajax event="change" update="@this"/>
+                </h:selectOneMenu>
+                <h:commandButton value="submit" type="submit" class="btn btn-primary"
+                                 action="#{userDetailBean.addGroup()}"/>
+            </h:form>
+        </ui:define>
+
+        <ui:define name="back">
+            <h:outputLink class="btn btn-primary" value="#{userDetailBean.goToUsers()}">
+                Users
+            </h:outputLink>
+        </ui:define>
+    </ui:composition>
+</h:body>
+</html>
